@@ -42,10 +42,10 @@ templates = Jinja2Templates(directory=str(llm.ROOT_DIR / "templates"))
 
 
 SOURCE_GROUPS: list[tuple[str, list[str]]] = [
-    ("Chercheurs", ["bair.berkeley", "cameronrwolfe", "crfm.stanford", "hazyresearch", "karpathy", "lilianweng", "languagemodels", "sebastianraschka", "timdettmers", "tridao"]),
+    ("Chercheurs", ["bair.berkeley", "cameronrwolfe", "crfm.stanford", "hazyresearch", "karpathy", "lilianweng", "languagemodels", "mlhonk", "sebastianraschka", "timdettmers", "tridao"]),
     ("MLOps",      ["eugeneyan", "huyenchip", "interconnects", "philschmid", "simonwillison"]),
     ("Infra",      ["anyscale", "modal.com", "nvidia", "pytorch", "semianalysis", "together.ai", "vllm.ai"]),
-    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai"]),
+    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
 ]
 
 
@@ -67,13 +67,14 @@ def group_sources(sources: list[str]) -> list[tuple[str, list[str]]]:
 
 
 SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
-    "anthropic":        ("badge-violet",  "border-t-violet-400",  "Anthropic",      "https://www.anthropic.com/favicon.ico"),
+    "anthropic":        ("badge-orange",  "border-t-orange-400",  "Anthropic",      "https://www.anthropic.com/favicon.ico"),
     "openai":           ("badge-emerald", "border-t-emerald-400", "OpenAI",         "https://openai.com/favicon.ico"),
     "huggingface.co/blog":   ("badge-yellow",  "border-t-yellow-400",  "HuggingFace",    "https://huggingface.co/favicon.ico"),
     "ai.meta.com":      ("badge-blue",    "border-t-blue-500",    "Meta AI",        "https://ai.meta.com/favicon.ico"),
     "microsoft.com":    ("badge-sky",     "border-t-sky-500",     "MSR",            "https://www.microsoft.com/favicon.ico"),
     "machinelearning.apple.com": ("badge-gray", "border-t-gray-300", "Apple ML",    "https://machinelearning.apple.com/favicon.ico"),
     "mistral":          ("badge-orange",  "border-t-orange-400",  "Mistral",        "https://mistral.ai/favicon.ico"),
+    "qwen.ai":          ("badge-violet",  "border-t-violet-500",  "Qwen",           "https://www.google.com/s2/favicons?domain=qwen.ai&sz=32"),
     "deepmind":         ("badge-blue",    "border-t-blue-400",    "DeepMind",       "https://www.google.com/s2/favicons?domain=deepmind.google&sz=32"),
     "simonwillison":    ("badge-sky",     "border-t-sky-400",     "Simon Willison", None),
     "karpathy":         ("badge-red",     "border-t-red-400",     "Karpathy",       None),
@@ -83,6 +84,7 @@ SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
     "huyenchip":        ("badge-rose",    "border-t-rose-400",    "Chip Huyen",     None),
     "eugeneyan":        ("badge-cyan",    "border-t-cyan-400",    "Eugene Yan",     None),
     "cameronrwolfe":    ("badge-emerald", "border-t-emerald-400", "Cameron Wolfe",  None),
+    "mlhonk":           ("badge-gray",    "border-t-gray-400",    "mlhonk",         None),
     "interconnects.ai": ("badge-purple",  "border-t-purple-400",  "Nathan Lambert", None),
     "tridao":           ("badge-rose",    "border-t-rose-400",    "Tri Dao",        None),
     "timdettmers":      ("badge-indigo",  "border-t-indigo-300",  "Tim Dettmers",   None),

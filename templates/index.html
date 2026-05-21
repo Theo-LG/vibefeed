@@ -209,12 +209,14 @@
     .card.is-read { opacity: 0.38; }
     .card.is-read:hover { opacity: 0.65; }
 
-    /* Must-read: golden ring */
+    /* Must-read: warm amber tint */
     .card.must-read {
-      box-shadow: 0 0 0 1.5px rgba(251,191,36,0.4), var(--card-shadow);
+      background: color-mix(in srgb, var(--card-bg) 88%, rgba(251,191,36,1) 12%);
+      box-shadow: var(--card-shadow);
     }
     .card.must-read:hover {
-      box-shadow: 0 0 0 1.5px rgba(251,191,36,0.55), var(--card-shadow-hover);
+      background: color-mix(in srgb, var(--card-bg) 85%, rgba(251,191,36,1) 15%);
+      box-shadow: var(--card-shadow-hover);
     }
 
     /* ── Source badges ──────────────────────────────────── */
