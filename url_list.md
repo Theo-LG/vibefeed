@@ -38,4 +38,5 @@
 * **Anthropic Research** : https://www.anthropic.com/news <!-- ignored: robots.txt -->
 * **Google DeepMind** : https://blog.google/innovation-and-ai/models-and-research/google-deepmind/ <!-- configured:rss -->
 * **Mistral AI** : https://mistral.ai/news <!-- configured:jina -->
+* **Oxen AI** : https://www.oxen.ai/blog <!-- configured:bs4 -->
 * **Qwen (Alibaba)** : https://qwen.ai/research <!-- configured:qwen -->

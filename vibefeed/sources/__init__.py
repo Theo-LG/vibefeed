@@ -11,6 +11,7 @@ from .philschmid import fetch as _philschmid_fetch
 from .rss import fetch as _rss_fetch
 from .vllm import fetch as _vllm_fetch
 from .qwen import fetch as _qwen_fetch
+from .oxen import fetch as _oxen_fetch
 
 try:
     from .meta import fetch as _meta_fetch
@@ -28,6 +29,7 @@ _FETCHERS: dict[str, tuple] = {
     "modal.com":              (_modal_fetch,      "modal"),
     "vllm.ai":                (_vllm_fetch,       "vllm"),
     "qwen.ai":                (_qwen_fetch,       "qwen"),
+    "oxen.ai":                (_oxen_fetch,       "oxen"),
     "philschmid.de":          (_philschmid_fetch, "philschmid"),
 }
 

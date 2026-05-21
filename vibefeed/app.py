@@ -43,7 +43,7 @@ templates = Jinja2Templates(directory=str(llm.ROOT_DIR / "templates"))
 
 SOURCE_GROUPS: list[tuple[str, list[str]]] = [
     ("Chercheurs", ["bair.berkeley", "cameronrwolfe", "crfm.stanford", "hazyresearch", "karpathy", "lilianweng", "languagemodels", "mlhonk", "sebastianraschka", "timdettmers", "tridao"]),
-    ("MLOps",      ["eugeneyan", "huyenchip", "interconnects", "philschmid", "simonwillison"]),
+    ("MLOps",      ["eugeneyan", "huyenchip", "interconnects", "oxen.ai", "philschmid", "simonwillison"]),
     ("Infra",      ["anyscale", "modal.com", "nvidia", "pytorch", "semianalysis", "together.ai", "vllm.ai"]),
     ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
 ]
@@ -84,7 +84,7 @@ SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
     "huyenchip":        ("badge-rose",    "border-t-rose-400",    "Chip Huyen",     None),
     "eugeneyan":        ("badge-cyan",    "border-t-cyan-400",    "Eugene Yan",     None),
     "cameronrwolfe":    ("badge-emerald", "border-t-emerald-400", "Cameron Wolfe",  None),
-    "mlhonk":           ("badge-gray",    "border-t-gray-400",    "mlhonk",         None),
+    "mlhonk":           ("badge-gray",    "border-t-gray-400",    "Mlhonk",         None),
     "interconnects.ai": ("badge-purple",  "border-t-purple-400",  "Nathan Lambert", None),
     "tridao":           ("badge-rose",    "border-t-rose-400",    "Tri Dao",        None),
     "timdettmers":      ("badge-indigo",  "border-t-indigo-300",  "Tim Dettmers",   None),
@@ -98,6 +98,7 @@ SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
     "philschmid":       ("badge-yellow",  "border-t-yellow-400",  "Phil Schmid",    None),
     "semianalysis":     ("badge-gray",    "border-t-gray-400",    "SemiAnalysis",   None),
     "anyscale":         ("badge-teal",    "border-t-teal-400",    "Anyscale",       None),
+    "oxen.ai":          ("badge-red",     "border-t-red-400",     "Oxen AI",        "https://www.google.com/s2/favicons?domain=oxen.ai&sz=32"),
     "together.ai":      ("badge-purple",  "border-t-purple-400",  "Together AI",    None),
 }
 
