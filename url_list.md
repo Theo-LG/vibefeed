@@ -18,6 +18,7 @@
 * **Phil Schmid (HuggingFace TL)** : https://www.philschmid.de/ <!-- configured:bs4 -->
 * **Simon Willison (LLMs locaux & Écosystème)** : https://simonwillison.net <!-- configured:rss -->
 * **Cameron Wolfe (Deep Learning Focus)** : https://cameronrwolfe.substack.com/ <!-- rss-only: Substack ToS -->
+* **ML Honk** : https://mlhonk.substack.com/ <!-- rss-only: Substack ToS -->
 
 ## 🏗️ Architecture Infra & Scale
 * **Anyscale** : https://www.anyscale.com/blog <!-- configured:rss -->

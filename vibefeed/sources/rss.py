@@ -25,6 +25,7 @@ FEED_MAP: dict[str, str] = {
     "timdettmers.com":              "https://timdettmers.com/feed",
     "together.ai":                  "https://www.together.ai/blog/rss.xml",
     "cameronrwolfe.substack.com":   "https://cameronrwolfe.substack.com/feed",
+    "mlhonk.substack.com":          "https://mlhonk.substack.com/feed",
     "pytorch.org":                  "https://pytorch.org/blog/feed/",
     "developer.nvidia.com":         "https://developer.nvidia.com/blog/feed/",
 }
