@@ -1,0 +1,9 @@
+vibefeed.db
+config/llm.yaml
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+vibefeed/sources/meta.py
+vibefeed/sources/anthropic.py

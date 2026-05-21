@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digest — {{ week }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script>
+    (function() {
+      const t = localStorage.getItem('theme');
+      document.documentElement.className = t === 'light' ? 'light' : 'dark';
+    })();
+  </script>
+
+  <style>
+    html.dark {
+      --bg:               #0b0f1a;
+      --surface:          #0e1116;
+      --border-dim:       rgba(255,255,255,0.07);
+      --accent:           #818cf8;
+      --card-bg:          #ffffff;
+      --card-border:      #e8eaed;
+      --nav-fg:           rgba(255,255,255,0.35);
+      --nav-hover:        rgba(255,255,255,0.72);
+      --meta-fg:          #9ca3af;
+      --toggle-fg:        rgba(255,255,255,0.38);
+      --toggle-hover:     rgba(255,255,255,0.7);
+      --btn-bg:           rgba(129,140,248,0.12);
+      --btn-fg:           #818cf8;
+      --btn-border:       rgba(129,140,248,0.2);
+      --btn-hover-bg:     rgba(129,140,248,0.22);
+      --empty-title:      rgba(255,255,255,0.28);
+      --empty-sub:        rgba(255,255,255,0.16);
+    }
+    html.light {
+      --bg:               #f1f3f7;
+      --surface:          #ffffff;
+      --border-dim:       rgba(0,0,0,0.08);
+      --accent:           #4f46e5;
+      --card-bg:          #ffffff;
+      --card-border:      #e8eaed;
+      --nav-fg:           #6b7280;
+      --nav-hover:        #111827;
+      --meta-fg:          #9ca3af;
+      --toggle-fg:        #9ca3af;
+      --toggle-hover:     #374151;
+      --btn-bg:           rgba(79,70,229,0.08);
+      --btn-fg:           #4f46e5;
+      --btn-border:       rgba(79,70,229,0.2);
+      --btn-hover-bg:     rgba(79,70,229,0.15);
+      --empty-title:      #6b7280;
+      --empty-sub:        #9ca3af;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      transition: background 0.22s ease;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    html.transitioning, html.transitioning * {
+      transition: background-color 0.22s ease, border-color 0.22s ease,
+                  color 0.22s ease, box-shadow 0.22s ease !important;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-dim); border-radius: 3px; }
+    .h-nav { color: var(--nav-fg); transition: color 0.15s; text-decoration: none; }
+    .h-nav:hover { color: var(--nav-hover); }
+    .h-toggle { color: var(--toggle-fg); transition: color 0.15s; }
+    .h-toggle:hover { color: var(--toggle-hover); }
+
+    .digest-content h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #374151;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .digest-content p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 0.5rem;
+    }
+    .digest-content a { color: #4f46e5; font-weight: 600; text-decoration: none; }
+    .digest-content a:hover { color: #3730a3; text-decoration: underline; }
+    .digest-content strong { font-weight: 700; }
+  </style>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      html.classList.add('transitioning');
+      setTimeout(() => html.classList.remove('transitioning'), 280);
+      html.className = next + ' transitioning';
+      localStorage.setItem('theme', next);
+      document.getElementById('theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+  </script>
+</head>
+<body>
+
+  <header style="background: var(--surface); border-bottom: 1px solid var(--border-dim);"
+          class="sticky top-0 z-20">
+    <div class="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="h-nav" style="font-size: 12px; font-weight: 500;">← Flux</a>
+        <span style="color: var(--border-dim); font-size: 18px; line-height: 1; user-select:none;">|</span>
+        <span class="mono text-sm font-medium" style="color: var(--accent);">digest</span>
+        <span style="font-size: 12px; color: var(--nav-fg);">{{ week }}</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <form method="post" action="/weekly/generate">
+          <button type="submit"
+                  style="font-size: 11.5px; font-weight: 600; padding: 5px 12px; border-radius: 8px;
+                         background: var(--btn-bg); color: var(--btn-fg);
+                         border: 1px solid var(--btn-border); cursor: pointer;"
+                  onmouseover="this.style.background='var(--btn-hover-bg)'"
+                  onmouseout="this.style.background='var(--btn-bg)'">
+            {% if digest_html %}Régénérer{% else %}Générer{% endif %}
+          </button>
+        </form>
+        <button onclick="toggleTheme()" id="theme-icon" class="h-toggle"
+                style="background: none; border: none; cursor: pointer; font-size: 15px;
+                       line-height: 1; padding: 2px;">
+          ☀️
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-6 py-8">
+    {% if digest_html %}
+    <div style="background: var(--card-bg); border-radius: 14px;
+                border: 1px solid var(--card-border); border-top: 3px solid var(--accent);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06); padding: 32px;">
+      {% if generated_at %}
+      <p style="font-size: 11px; font-weight: 500; color: var(--meta-fg);
+                margin-bottom: 24px; letter-spacing: 0.02em;">
+        Généré le {{ generated_at }}
+      </p>
+      {% endif %}
+      <div class="digest-content">{{ digest_html | safe }}</div>
+    </div>
+
+    {% else %}
+    <div style="display: flex; flex-direction: column; align-items: center;
+                justify-content: center; padding: 8rem 0; gap: 16px;">
+      <span style="font-size: 40px;">📭</span>
+      <p style="font-size: 15px; font-weight: 500; color: var(--empty-title); margin: 0;">
+        Aucun digest pour cette semaine
+      </p>
+      <p style="font-size: 13px; color: var(--empty-sub); margin: 0;">
+        Clique sur "Générer" pour synthétiser les articles
+      </p>
+    </div>
+    {% endif %}
+  </main>
+
+  <script>
+    document.getElementById('theme-icon').textContent =
+      document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+  </script>
+
+</body>
+</html>

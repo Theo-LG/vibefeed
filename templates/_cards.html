@@ -1,0 +1,126 @@
+{% set ns = namespace(current_date=prev_date) %}
+{% for a in articles %}
+
+{% if a.date_label != ns.current_date %}
+{% set ns.current_date = a.date_label %}
+<div class="col-span-full flex items-center gap-3 {% if not loop.first or prev_date %}mt-6{% endif %}">
+  <span style="font-size: 11px; font-weight: 600; text-transform: uppercase;
+               letter-spacing: 0.08em; color: var(--day-fg);">{{ a.date_label }}</span>
+  <div class="flex-1" style="height: 1px; background: var(--day-line);"></div>
+</div>
+{% endif %}
+
+<article class="card {{ a.source_border }}
+                {% if a.is_read %}is-read{% endif %}
+                {% if a.must_read %}must-read{% endif %}">
+
+  <!-- Source + meta -->
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+    <span class="badge {{ a.source_css }}">
+      {% if a.source_logo %}
+      <img src="{{ a.source_logo }}" alt="{{ a.source_label }}" />
+      {% endif %}
+      {{ a.source_label }}
+    </span>
+    <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+                font-size: 11px; font-weight: 500; color: var(--text-muted);">
+      <span>{{ a.published_date }}</span>
+      {% if a.read_time %}
+      <span style="color: var(--dot);">·</span>
+      <span>{{ a.read_time }} min</span>
+      {% endif %}
+      {% if a.must_read %}
+      <span title="À ne pas manquer" style="font-size: 12px;">🔥</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Title -->
+  <h2 class="line-clamp-2"
+      style="font-size: 14.5px; font-weight: 600; line-height: 1.45;
+             color: var(--text-primary); margin: 0;">
+    {{ a.title }}
+  </h2>
+
+  <!-- Bullets -->
+  <div class="flex-1">
+    {% if a.tldr %}
+    <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px;">
+      {% for bullet in a.tldr %}
+      <li style="display:flex; gap:8px; font-size:12.5px; line-height:1.65; color:var(--text-secondary);">
+        <span style="color:var(--accent); font-weight:700; flex-shrink:0; margin-top:2px;">•</span>
+        <span>{{ bullet }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p style="font-size:12px; color:var(--text-dim); font-style:italic; margin:0;">
+      Résumé non disponible
+    </p>
+    {% endif %}
+  </div>
+
+  <!-- Tags + score -->
+  <div style="display:flex; gap:6px; flex-wrap:wrap; min-height:20px;">
+    {% for tag in a.tags %}
+    {% if tag in type_tags %}
+    <span style="font-size:10px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase;
+                 padding:2px 7px; border-radius:4px;
+                 background:var(--tag-type-bg); color:var(--tag-type-fg);">{{ tag }}</span>
+    {% else %}
+    <span style="font-size:10px; font-weight:500; letter-spacing:0.03em; text-transform:uppercase;
+                 padding:2px 7px; border-radius:4px;
+                 background:var(--tag-theme-bg); color:var(--tag-theme-fg);">{{ tag }}</span>
+    {% endif %}
+    {% endfor %}
+    {% if a.score and a.score >= 4 %}
+    <span style="font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px;
+                 background:var(--tag-score-bg); color:var(--tag-score-fg);">
+      {{ a.score }}★
+    </span>
+    {% endif %}
+  </div>
+
+  <!-- Footer -->
+  <div style="display:flex; align-items:center; justify-content:space-between;
+              padding-top:12px; border-top:1px solid var(--card-divider);">
+    <a href="{{ a.url }}" target="_blank" rel="noopener" class="h-lire"
+       style="font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:4px;">
+      Lire <span style="font-size:14px; line-height:1;">→</span>
+    </a>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <form method="post" action="/toggle-must-read">
+        <input type="hidden" name="url" value="{{ a.url }}" />
+        <input type="hidden" name="back" value="{{ back_url }}" />
+        <button type="submit" class="h-read"
+                style="font-size:13px; font-weight:500; background:none; border:none; cursor:pointer; padding:0;
+                       color: {% if a.must_read %}var(--accent){% else %}var(--text-dim){% endif %};"
+                title="{% if a.must_read %}Retirer des must read{% else %}Marquer must read{% endif %}">
+          {% if a.must_read %}★{% else %}☆{% endif %}
+        </button>
+      </form>
+      {% if not a.is_read %}
+      <form method="post" action="/mark-read">
+        <input type="hidden" name="url" value="{{ a.url }}" />
+        <input type="hidden" name="back" value="{{ back_url }}" />
+        <button type="submit" class="h-read"
+                style="font-size:11.5px; font-weight:500; background:none; border:none; cursor:pointer; padding:0;">
+          ✓ Lu
+        </button>
+      </form>
+      {% else %}
+      <form method="post" action="/mark-unread">
+        <input type="hidden" name="url" value="{{ a.url }}" />
+        <input type="hidden" name="back" value="{{ back_url }}" />
+        <button type="submit" class="h-done"
+                style="font-size:11.5px; font-weight:600; background:none; border:none; cursor:pointer; padding:0;">
+          ✓ Lu
+        </button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+</article>
+{% endfor %}
+<template id="has-more-flag" data-value="{{ 'true' if has_more else 'false' }}"></template>

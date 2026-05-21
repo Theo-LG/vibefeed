@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille IA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+
+  <script>
+    (function() {
+      document.documentElement.className = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    })();
+  </script>
+
+  <style>
+    /* ── Dark ─────────────────────────────────────────── */
+    html.dark {
+      --bg:                #0b0f1a;
+      --surface:           #0e1116;
+      --border-dim:        rgba(255,255,255,0.07);
+      --accent:            #818cf8;
+
+      --card-bg:           #141824;
+      --card-border:       rgba(255,255,255,0.07);
+      --card-border-hover: rgba(255,255,255,0.14);
+      --card-shadow:       0 2px 8px rgba(0,0,0,0.3);
+      --card-shadow-hover: 0 14px 40px rgba(0,0,0,0.45), 0 4px 12px rgba(0,0,0,0.22);
+      --card-divider:      rgba(255,255,255,0.06);
+
+      --text-primary:      rgba(255,255,255,0.92);
+      --text-secondary:    rgba(255,255,255,0.5);
+      --text-muted:        rgba(255,255,255,0.3);
+      --text-dim:          rgba(255,255,255,0.2);
+      --dot:               rgba(255,255,255,0.15);
+
+      --tag-type-bg:       rgba(129,140,248,0.15);
+      --tag-type-fg:       #a5b4fc;
+      --tag-theme-bg:      rgba(255,255,255,0.06);
+      --tag-theme-fg:      rgba(255,255,255,0.35);
+      --tag-score-bg:      rgba(251,191,36,0.12);
+      --tag-score-fg:      #fbbf24;
+
+      --chip-off-bg:       rgba(255,255,255,0.07);
+      --chip-off-fg:       rgba(255,255,255,0.42);
+      --chip-off-hbg:      rgba(255,255,255,0.12);
+      --chip-off-hfg:      rgba(255,255,255,0.78);
+
+      --day-fg:            rgba(255,255,255,0.28);
+      --day-line:          rgba(255,255,255,0.07);
+
+      --lire-fg:           #818cf8;
+      --lire-hfg:          #c7d2fe;
+      --read-fg:           rgba(255,255,255,0.22);
+      --read-hfg:          #818cf8;
+      --done-fg:           #818cf8;
+      --done-hfg:          rgba(255,255,255,0.3);
+
+      --nav-fg:            rgba(255,255,255,0.35);
+      --nav-hfg:           rgba(255,255,255,0.75);
+
+      --badge-count-bg:    rgba(129,140,248,0.13);
+      --badge-count-fg:    #818cf8;
+
+      --toggle-fg:         rgba(255,255,255,0.35);
+      --toggle-hfg:        rgba(255,255,255,0.75);
+
+      --empty-title:       rgba(255,255,255,0.28);
+      --empty-sub:         rgba(255,255,255,0.15);
+      --code-bg:           rgba(255,255,255,0.07);
+      --code-fg:           #818cf8;
+
+      /* Source badges — dark */
+      --b-violet-bg:  rgba(167,139,250,0.14); --b-violet-fg:  #c4b5fd;
+      --b-emerald-bg: rgba(52,211,153,0.14);  --b-emerald-fg: #6ee7b7;
+      --b-yellow-bg:  rgba(250,204,21,0.14);  --b-yellow-fg:  #fde68a;
+      --b-orange-bg:  rgba(251,146,60,0.14);  --b-orange-fg:  #fdba74;
+      --b-blue-bg:    rgba(96,165,250,0.14);  --b-blue-fg:    #93c5fd;
+      --b-sky-bg:     rgba(56,189,248,0.14);  --b-sky-fg:     #7dd3fc;
+      --b-red-bg:     rgba(248,113,113,0.14); --b-red-fg:     #fca5a5;
+      --b-pink-bg:    rgba(244,114,182,0.14); --b-pink-fg:    #f9a8d4;
+      --b-indigo-bg:  rgba(129,140,248,0.14); --b-indigo-fg:  #a5b4fc;
+      --b-teal-bg:    rgba(45,212,191,0.14);  --b-teal-fg:    #5eead4;
+      --b-cyan-bg:    rgba(34,211,238,0.14);  --b-cyan-fg:    #67e8f9;
+      --b-purple-bg:  rgba(192,132,252,0.14); --b-purple-fg:  #d8b4fe;
+      --b-rose-bg:    rgba(251,113,133,0.14); --b-rose-fg:    #fda4af;
+      --b-amber-bg:   rgba(251,191,36,0.14);  --b-amber-fg:   #fcd34d;
+      --b-gray-bg:    rgba(156,163,175,0.12); --b-gray-fg:    #9ca3af;
+    }
+
+    /* ── Light ────────────────────────────────────────── */
+    html.light {
+      --bg:                #f0f2f7;
+      --surface:           #ffffff;
+      --border-dim:        rgba(0,0,0,0.08);
+      --accent:            #4f46e5;
+
+      --card-bg:           #ffffff;
+      --card-border:       rgba(0,0,0,0.08);
+      --card-border-hover: rgba(0,0,0,0.17);
+      --card-shadow:       0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+      --card-shadow-hover: 0 10px 28px rgba(0,0,0,0.1), 0 3px 8px rgba(0,0,0,0.06);
+      --card-divider:      rgba(0,0,0,0.07);
+
+      --text-primary:      #111827;
+      --text-secondary:    #4b5563;
+      --text-muted:        #6b7280;
+      --text-dim:          #9ca3af;
+      --dot:               #d1d5db;
+
+      --tag-type-bg:       rgba(79,70,229,0.08);
+      --tag-type-fg:       #4338ca;
+      --tag-theme-bg:      #f3f4f6;
+      --tag-theme-fg:      #6b7280;
+      --tag-score-bg:      #fef3c7;
+      --tag-score-fg:      #92400e;
+
+      --chip-off-bg:       rgba(0,0,0,0.05);
+      --chip-off-fg:       rgba(0,0,0,0.42);
+      --chip-off-hbg:      rgba(0,0,0,0.09);
+      --chip-off-hfg:      rgba(0,0,0,0.78);
+
+      --day-fg:            #6b7280;
+      --day-line:          rgba(0,0,0,0.09);
+
+      --lire-fg:           #4f46e5;
+      --lire-hfg:          #3730a3;
+      --read-fg:           #9ca3af;
+      --read-hfg:          #4f46e5;
+      --done-fg:           #4f46e5;
+      --done-hfg:          #9ca3af;
+
+      --nav-fg:            #6b7280;
+      --nav-hfg:           #111827;
+
+      --badge-count-bg:    rgba(79,70,229,0.08);
+      --badge-count-fg:    #4f46e5;
+
+      --toggle-fg:         #9ca3af;
+      --toggle-hfg:        #374151;
+
+      --empty-title:       #6b7280;
+      --empty-sub:         #9ca3af;
+      --code-bg:           #f3f4f6;
+      --code-fg:           #4f46e5;
+
+      /* Source badges — light */
+      --b-violet-bg:  #ede9fe; --b-violet-fg:  #5b21b6;
+      --b-emerald-bg: #d1fae5; --b-emerald-fg: #065f46;
+      --b-yellow-bg:  #fef9c3; --b-yellow-fg:  #854d0e;
+      --b-orange-bg:  #ffedd5; --b-orange-fg:  #9a3412;
+      --b-blue-bg:    #dbeafe; --b-blue-fg:    #1e40af;
+      --b-sky-bg:     #e0f2fe; --b-sky-fg:     #0c4a6e;
+      --b-red-bg:     #fee2e2; --b-red-fg:     #991b1b;
+      --b-pink-bg:    #fce7f3; --b-pink-fg:    #9d174d;
+      --b-indigo-bg:  #e0e7ff; --b-indigo-fg:  #3730a3;
+      --b-teal-bg:    #ccfbf1; --b-teal-fg:    #134e4a;
+      --b-cyan-bg:    #cffafe; --b-cyan-fg:    #164e63;
+      --b-purple-bg:  #f3e8ff; --b-purple-fg:  #6b21a8;
+      --b-rose-bg:    #ffe4e6; --b-rose-fg:    #9f1239;
+      --b-amber-bg:   #fef3c7; --b-amber-fg:   #78350f;
+      --b-gray-bg:    #f3f4f6; --b-gray-fg:    #4b5563;
+    }
+
+    /* ── Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Smooth theme transition — only fires during toggle */
+    html.transitioning,
+    html.transitioning * {
+      transition:
+        background-color 0.22s ease,
+        border-color 0.22s ease,
+        color 0.22s ease,
+        box-shadow 0.22s ease !important;
+    }
+
+    /* ── Cards ─────────────────────────────────────────── */
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      border-top-width: 3px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px;
+    }
+    .card:hover {
+      box-shadow: var(--card-shadow-hover);
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+    }
+    .card.is-read { opacity: 0.38; }
+    .card.is-read:hover { opacity: 0.65; }
+
+    /* Must-read: golden ring */
+    .card.must-read {
+      box-shadow: 0 0 0 1.5px rgba(251,191,36,0.4), var(--card-shadow);
+    }
+    .card.must-read:hover {
+      box-shadow: 0 0 0 1.5px rgba(251,191,36,0.55), var(--card-shadow-hover);
+    }
+
+    /* ── Source badges ──────────────────────────────────── */
+    .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+             display: inline-flex; align-items: center; gap: 5px; }
+    .badge img { width: 12px; height: 12px; border-radius: 2px; object-fit: contain; }
+    .badge-violet  { background: var(--b-violet-bg);  color: var(--b-violet-fg);  }
+    .badge-emerald { background: var(--b-emerald-bg); color: var(--b-emerald-fg); }
+    .badge-yellow  { background: var(--b-yellow-bg);  color: var(--b-yellow-fg);  }
+    .badge-orange  { background: var(--b-orange-bg);  color: var(--b-orange-fg);  }
+    .badge-blue    { background: var(--b-blue-bg);    color: var(--b-blue-fg);    }
+    .badge-sky     { background: var(--b-sky-bg);     color: var(--b-sky-fg);     }
+    .badge-red     { background: var(--b-red-bg);     color: var(--b-red-fg);     }
+    .badge-pink    { background: var(--b-pink-bg);    color: var(--b-pink-fg);    }
+    .badge-indigo  { background: var(--b-indigo-bg);  color: var(--b-indigo-fg);  }
+    .badge-teal    { background: var(--b-teal-bg);    color: var(--b-teal-fg);    }
+    .badge-cyan    { background: var(--b-cyan-bg);    color: var(--b-cyan-fg);    }
+    .badge-purple  { background: var(--b-purple-bg);  color: var(--b-purple-fg);  }
+    .badge-rose    { background: var(--b-rose-bg);    color: var(--b-rose-fg);    }
+    .badge-amber   { background: var(--b-amber-bg);   color: var(--b-amber-fg);   }
+    .badge-gray    { background: var(--b-gray-bg);    color: var(--b-gray-fg);    }
+
+    /* ── Filter chips ───────────────────────────────────── */
+    .chip {
+      display: inline-flex; align-items: center;
+      padding: 3px 11px; border-radius: 20px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.01em;
+      cursor: pointer; border: none; outline: none; background: none;
+      transition: background 0.14s, color 0.14s;
+    }
+    .chip-on  { background: var(--accent); color: #fff; }
+    .chip-off { background: var(--chip-off-bg); color: var(--chip-off-fg); }
+    .chip-off:hover { background: var(--chip-off-hbg); color: var(--chip-off-hfg); }
+
+    /* ── Hover utility classes ──────────────────────────── */
+    .h-nav  { color: var(--nav-fg);   transition: color 0.15s; text-decoration: none; }
+    .h-nav:hover  { color: var(--nav-hfg); }
+    .h-lire { color: var(--lire-fg);  transition: color 0.15s; text-decoration: none; }
+    .h-lire:hover { color: var(--lire-hfg); }
+    .h-read { color: var(--read-fg);  transition: color 0.15s; }
+    .h-read:hover { color: var(--read-hfg); }
+    .h-done { color: var(--done-fg);  transition: color 0.15s; }
+    .h-done:hover { color: var(--done-hfg); }
+    .h-toggle { color: var(--toggle-fg); transition: color 0.15s; }
+    .h-toggle:hover { color: var(--toggle-hfg); }
+
+    /* ── Scrollbar ──────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border-dim); border-radius: 3px; }
+  </style>
+
+  <script>
+    function toggleSource(src) {
+      const p = new URLSearchParams(window.location.search);
+      const cur = p.getAll('source'); p.delete('source');
+      const i = cur.indexOf(src);
+      if (i === -1) cur.push(src); else cur.splice(i, 1);
+      cur.forEach(s => p.append('source', s));
+      window.location.href = '/?' + p.toString();
+    }
+    function toggleGroup(btn) {
+      const srcs = btn.dataset.sources.split(',');
+      const p = new URLSearchParams(window.location.search);
+      const cur = p.getAll('source'); p.delete('source');
+      const allActive = srcs.every(s => cur.includes(s));
+      const next = allActive
+        ? cur.filter(s => !srcs.includes(s))
+        : [...new Set([...cur, ...srcs])];
+      next.forEach(s => p.append('source', s));
+      window.location.href = '/?' + p.toString();
+    }
+    function clearSources() {
+      const p = new URLSearchParams(window.location.search);
+      p.delete('source'); p.delete('unread'); p.delete('must_read');
+      window.location.href = '/?' + p.toString();
+    }
+    function toggleUnread() {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('unread') === 'true') p.delete('unread'); else p.set('unread', 'true');
+      window.location.href = '/?' + p.toString();
+    }
+    function toggleMustRead() {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('must_read') === 'true') p.delete('must_read'); else p.set('must_read', 'true');
+      window.location.href = '/?' + p.toString();
+    }
+    function toggleTheme() {
+      const html = document.documentElement;
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      html.classList.add('transitioning');
+      setTimeout(() => html.classList.remove('transitioning'), 280);
+      html.className = next + ' transitioning';
+      localStorage.setItem('theme', next);
+      document.getElementById('theme-icon').textContent = next === 'dark' ? '☀️' : '🌙';
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <header style="background: var(--surface); border-bottom: 1px solid var(--border-dim);"
+          class="sticky top-0 z-20">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="mono text-sm font-medium" style="color: var(--accent);">vibefeed</span>
+        <span style="color: var(--border-dim); font-size: 18px; line-height: 1; user-select:none;">|</span>
+        <span style="font-size: 12px; color: var(--text-muted);">
+          {{ total }} article{{ 's' if total > 1 }}
+        </span>
+        {% if unread_count > 0 %}
+        <span style="font-size: 11.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+                     background: var(--badge-count-bg); color: var(--badge-count-fg);">
+          {{ unread_count }} non lu{{ 's' if unread_count > 1 }}
+        </span>
+        {% endif %}
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="/weekly" class="h-nav flex items-center gap-1.5" style="font-size: 12px; font-weight: 500;">
+          <span>📰</span><span>Digest</span>
+        </a>
+        <button onclick="toggleTheme()" id="theme-icon" class="h-toggle"
+                style="background: none; border: none; cursor: pointer; font-size: 15px; padding: 2px; line-height: 1;">
+          ☀️
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Filter bar ──────────────────────────────────────── -->
+  <div style="background: var(--surface); border-bottom: 1px solid var(--border-dim);"
+       class="sticky top-[49px] z-10">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center gap-1.5 flex-wrap">
+      <button onclick="clearSources()"
+              class="chip {% if not active_sources and not unread_only and not must_read_only %}chip-on{% else %}chip-off{% endif %}">
+        Tout
+      </button>
+      <button onclick="toggleUnread()"
+              class="chip {% if unread_only %}chip-on{% else %}chip-off{% endif %}">
+        Non lus
+      </button>
+      <button onclick="toggleMustRead()"
+              class="chip {% if must_read_only %}chip-on{% else %}chip-off{% endif %}">
+        ★ Must read
+      </button>
+      {% for group_name, group_sources in grouped_sources %}
+      <div style="width: 1px; height: 14px; background: var(--border-dim); margin: 0 4px;"></div>
+      <button onclick="toggleGroup(this)"
+              data-sources="{{ group_sources | join(',') }}"
+              style="font-size: 10px; font-weight: 700; text-transform: uppercase;
+                     letter-spacing: 0.08em; padding: 2px 6px; border-radius: 4px; border: none;
+                     cursor: pointer; background: none; color: var(--accent); opacity: 0.7;">
+        {{ group_name }}
+      </button>
+      {% for src in group_sources %}
+      <button onclick="toggleSource('{{ src }}')"
+              class="chip {% if src in active_sources %}chip-on{% else %}chip-off{% endif %}">
+        {{ source_style(src)[2] }}
+      </button>
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ── Grid ────────────────────────────────────────────── -->
+  <main class="max-w-7xl mx-auto px-6 py-8">
+    {% if articles %}
+    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      {% set prev_date = "" %}
+      {% set back_url = back_url %}
+      {% include "_cards.html" %}
+    </div>
+
+    {% if has_more %}
+    <div id="sentinel" style="height: 40px; display: flex; align-items: center;
+                               justify-content: center; margin-top: 16px;">
+      <span id="loading-indicator" style="font-size: 12px; color: var(--text-dim); display: none;">
+        Chargement…
+      </span>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="display:flex; flex-direction:column; align-items:center;
+                justify-content:center; padding:8rem 0; gap:16px;">
+      <span style="font-size:40px;">📭</span>
+      <p style="font-size:15px; font-weight:500; color:var(--empty-title); margin:0;">
+        Aucun article trouvé
+      </p>
+      <p style="font-size:13px; color:var(--empty-sub); margin:0;">
+        Lance <code style="background:var(--code-bg); color:var(--code-fg);
+                           padding:2px 6px; border-radius:4px;
+                           font-family:'JetBrains Mono',monospace; font-size:12px;">
+          python -m vibefeed.ingest
+        </code> pour démarrer
+      </p>
+    </div>
+    {% endif %}
+  </main>
+
+  {% if has_more %}
+  <script>
+    (function () {
+      const grid = document.getElementById('cards-grid');
+      const sentinel = document.getElementById('sentinel');
+      const loader = document.getElementById('loading-indicator');
+      let offset = {{ PAGE_SIZE }};
+      let loading = false;
+      let done = {{ 'false' if has_more else 'true' }};
+
+      const params = new URLSearchParams(window.location.search);
+
+      async function loadMore() {
+        if (loading || done) return;
+        loading = true;
+        loader.style.display = 'block';
+
+        const fetchParams = new URLSearchParams(params);
+        fetchParams.set('offset', offset);
+        const lastCard = grid.querySelector('[data-date-label]:last-of-type');
+        if (lastCard) fetchParams.set('prev_date', lastCard.dataset.dateLabel);
+
+        try {
+          const res = await fetch('/articles/more?' + fetchParams.toString());
+          const html = await res.text();
+
+          const tmp = document.createElement('div');
+          tmp.innerHTML = html;
+          const flag = tmp.querySelector('#has-more-flag');
+          const hasMore = flag ? flag.dataset.value === 'true' : false;
+          if (flag) flag.remove();
+          while (tmp.firstChild) grid.appendChild(tmp.firstChild);
+
+          offset += {{ PAGE_SIZE }};
+          if (!hasMore) { done = true; sentinel.remove(); }
+        } catch (e) {
+          console.error(e);
+        } finally {
+          loading = false;
+          loader.style.display = 'none';
+        }
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) loadMore();
+      }, { rootMargin: '200px' });
+
+      observer.observe(sentinel);
+    })();
+  </script>
+  {% endif %}
+
+  <script>
+    document.getElementById('theme-icon').textContent =
+      document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+  </script>
+
+</body>
+</html>

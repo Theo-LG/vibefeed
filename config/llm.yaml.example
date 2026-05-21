@@ -1,0 +1,15 @@
+# LLM backend configuration
+# backend: ollama | anthropic | openai
+backend: ollama
+
+ollama:
+  model: gemma4:26b
+  context_window: 8192
+
+anthropic:
+  model: claude-haiku-4-5-20251001
+  # api_key: sk-ant-...  (or set ANTHROPIC_API_KEY env var)
+
+openai:
+  model: gpt-4o-mini
+  # api_key: sk-...  (or set OPENAI_API_KEY env var)
