@@ -8,8 +8,8 @@ from typing import Callable
 from .jina import _parse_date
 
 JINA_URL = "https://r.jina.ai/https://mistral.ai/news"
-HEADERS_JINA = {"Accept": "text/plain", "User-Agent": "Mozilla/5.0"}
-HEADERS_HTML = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"}
+HEADERS_JINA = {"Accept": "text/plain", "User-Agent": "AIFeed-personal/1.0 (personal AI news aggregator; not for redistribution)"}
+HEADERS_HTML = {"User-Agent": "AIFeed-personal/1.0 (personal AI news aggregator; not for redistribution)"}
 
 _NEWS_LINK = re.compile(r'\[.*?\]\((https://mistral\.ai/news/[a-z0-9-]+/?)\)', re.DOTALL)
 _DATE_SUFFIX = re.compile(r'\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2},? \d{4}.*')

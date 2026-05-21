@@ -224,6 +224,10 @@ def ingest() -> None:
     queue: Queue = Queue()
     n_sites = len(by_site)
 
+    if n_sites == 0:
+        print("Aucun nouvel article à traiter.")
+        return
+
     with ThreadPoolExecutor(max_workers=n_sites) as pool:
         for candidates in by_site.values():
             pool.submit(_process_site_articles, candidates, queue)

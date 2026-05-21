@@ -6,8 +6,8 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Callable
 
 JINA_URL = "https://r.jina.ai/https://vllm.ai/blog"
-HEADERS_JINA = {"Accept": "text/plain", "User-Agent": "Mozilla/5.0"}
-HEADERS_HTML = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36"}
+HEADERS_JINA = {"Accept": "text/plain", "User-Agent": "AIFeed-personal/1.0 (personal AI news aggregator; not for redistribution)"}
+HEADERS_HTML = {"User-Agent": "AIFeed-personal/1.0 (personal AI news aggregator; not for redistribution)"}
 
 _BLOG_LINK = re.compile(r'\]\((https://vllm\.ai/blog/(\d{4}-\d{2}-\d{2})-[a-z0-9-]+)\)')
 

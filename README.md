@@ -4,6 +4,8 @@ Agrégateur de veille IA personnel. Ingère des articles depuis une liste de blo
 
 ![dark mode](https://img.shields.io/badge/dark%20%2F%20light-mode-818cf8) ![backend](https://img.shields.io/badge/backend-ollama%20%7C%20anthropic%20%7C%20openai-orange)
 
+![VibeFeed screenshot](assets/vibefeed_feed.png)
+
 ## Ce que ça fait
 
 - Récupère les derniers articles depuis des flux RSS et des pages scrapées (BS4)
@@ -60,7 +62,7 @@ Récupère les nouveaux articles depuis toutes les sources, les résume et les s
 ### 5. Interface web
 
 ```bash
-uvicorn vibefeed.app:app
+.venv/bin/uvicorn vibefeed.app:app
 ```
 
 Ouvre [http://localhost:8000](http://localhost:8000).
@@ -68,7 +70,7 @@ Ouvre [http://localhost:8000](http://localhost:8000).
 En mode développement (hot reload) :
 
 ```bash
-uvicorn vibefeed.app:app --reload
+.venv/bin/uvicorn vibefeed.app:app --reload
 ```
 
 ## Structure
