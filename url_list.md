@@ -42,4 +42,5 @@
 * **Qwen (Alibaba)** : https://qwen.ai/research <!-- configured:qwen -->
 * **DeepSeek AI (fan site)** : https://deepseek.ai/blog <!-- configured:deepseek; no-fetch: SPA -->
 * **ERNIE (Baidu)** : https://ernie.baidu.com/blog <!-- configured:ernie; no-fetch: SPA -->
-* **xAI (Grok)** : https://x.ai/news <!-- skip: 403 Cloudflare + ai-input=no (Content Signals) -->
+* **Kimi (Moonshot AI)** : https://www.kimi.com/blog/ <!-- configured:kimi -->
+* **xAI (Grok)** : `https://x.ai/news` <!-- skip: 403 Cloudflare + ai-input=no (Content Signals) -->

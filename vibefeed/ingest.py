@@ -57,7 +57,7 @@ def init_db(conn: sqlite3.Connection) -> None:
 
 def parse_urls(path: str) -> list[str]:
     with open(path, "r", encoding="utf-8") as f:
-        return re.findall(r"https?://[^\s\)\]>\"']+", f.read())
+        return re.findall(r"https?://[^\s\)\]>\"'`]+", f.read())
 
 
 def fetch_raw(url: str) -> str:

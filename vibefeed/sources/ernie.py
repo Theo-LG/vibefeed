@@ -27,7 +27,7 @@ def _date_from_slug(slug: str) -> str:
                 return date(year, mm, dd).isoformat()
             except ValueError:
                 pass
-    return date.today().isoformat()
+    return "2000-01-01"  # no date in slug → exclude from 30-day window
 
 
 def fetch(blog_url: str, _) -> list[dict]:

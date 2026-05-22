@@ -14,6 +14,7 @@ from .qwen import fetch as _qwen_fetch
 from .oxen import fetch as _oxen_fetch
 from .deepseek import fetch as _deepseek_fetch
 from .ernie import fetch as _ernie_fetch
+from .kimi import fetch as _kimi_fetch
 
 try:
     from .meta import fetch as _meta_fetch
@@ -34,6 +35,7 @@ _FETCHERS: dict[str, tuple] = {
     "oxen.ai":                (_oxen_fetch,       "oxen"),
     "deepseek.ai":            (_deepseek_fetch,   "deepseek"),
     "ernie.baidu.com":        (_ernie_fetch,      "ernie"),
+    "kimi.com":               (_kimi_fetch,       "kimi"),
     "philschmid.de":          (_philschmid_fetch, "philschmid"),
 }
 

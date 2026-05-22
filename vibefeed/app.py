@@ -45,7 +45,7 @@ SOURCE_GROUPS: list[tuple[str, list[str]]] = [
     ("Chercheurs", ["bair.berkeley", "cameronrwolfe", "crfm.stanford", "hazyresearch", "karpathy", "lilianweng", "languagemodels", "mlhonk", "sebastianraschka", "timdettmers", "tridao"]),
     ("MLOps",      ["eugeneyan", "huyenchip", "interconnects", "oxen.ai", "philschmid", "simonwillison"]),
     ("Infra",      ["anyscale", "modal.com", "nvidia", "pytorch", "semianalysis", "together.ai", "vllm.ai"]),
-    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "deepseek.ai", "ernie.baidu", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
+    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "deepseek.ai", "ernie.baidu", "huggingface", "kimi.com", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
 ]
 
 
@@ -102,6 +102,7 @@ SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
     "together.ai":      ("badge-purple",  "border-t-purple-400",  "Together AI",    None),
     "deepseek.ai":      ("badge-blue",    "border-t-blue-500",    "DeepSeek",       "https://www.google.com/s2/favicons?domain=deepseek.com&sz=32"),
     "ernie.baidu.com":  ("badge-blue",    "border-t-blue-400",    "ERNIE",          "https://www.google.com/s2/favicons?domain=ernie.baidu.com&sz=32"),
+    "kimi.com":         ("badge-indigo",  "border-t-indigo-400",  "Kimi",           "https://www.google.com/s2/favicons?domain=kimi.com&sz=32"),
 }
 
 
