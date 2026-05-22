@@ -12,6 +12,8 @@ from .rss import fetch as _rss_fetch
 from .vllm import fetch as _vllm_fetch
 from .qwen import fetch as _qwen_fetch
 from .oxen import fetch as _oxen_fetch
+from .deepseek import fetch as _deepseek_fetch
+from .ernie import fetch as _ernie_fetch
 
 try:
     from .meta import fetch as _meta_fetch
@@ -30,6 +32,8 @@ _FETCHERS: dict[str, tuple] = {
     "vllm.ai":                (_vllm_fetch,       "vllm"),
     "qwen.ai":                (_qwen_fetch,       "qwen"),
     "oxen.ai":                (_oxen_fetch,       "oxen"),
+    "deepseek.ai":            (_deepseek_fetch,   "deepseek"),
+    "ernie.baidu.com":        (_ernie_fetch,      "ernie"),
     "philschmid.de":          (_philschmid_fetch, "philschmid"),
 }
 
@@ -46,6 +50,8 @@ _NO_FETCH = {
     "interconnects.ai",
     "magazine.sebastianraschka.com",
     "newsletter.languagemodels.co",
+    "deepseek.ai",            # SPA: content fetch useless
+    "ernie.baidu.com",        # SPA: content fetch useless
 }
 
 

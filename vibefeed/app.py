@@ -45,7 +45,7 @@ SOURCE_GROUPS: list[tuple[str, list[str]]] = [
     ("Chercheurs", ["bair.berkeley", "cameronrwolfe", "crfm.stanford", "hazyresearch", "karpathy", "lilianweng", "languagemodels", "mlhonk", "sebastianraschka", "timdettmers", "tridao"]),
     ("MLOps",      ["eugeneyan", "huyenchip", "interconnects", "oxen.ai", "philschmid", "simonwillison"]),
     ("Infra",      ["anyscale", "modal.com", "nvidia", "pytorch", "semianalysis", "together.ai", "vllm.ai"]),
-    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
+    ("Labs",       ["anthropic", "ai.meta.com", "deepmind", "deepseek.ai", "ernie.baidu", "huggingface", "machinelearning.apple", "microsoft.com", "mistral", "openai", "qwen.ai"]),
 ]
 
 
@@ -100,6 +100,8 @@ SOURCE_STYLES: dict[str, tuple[str, str, str, str | None]] = {
     "anyscale":         ("badge-teal",    "border-t-teal-400",    "Anyscale",       None),
     "oxen.ai":          ("badge-red",     "border-t-red-400",     "Oxen AI",        "https://www.google.com/s2/favicons?domain=oxen.ai&sz=32"),
     "together.ai":      ("badge-purple",  "border-t-purple-400",  "Together AI",    None),
+    "deepseek.ai":      ("badge-blue",    "border-t-blue-500",    "DeepSeek",       "https://www.google.com/s2/favicons?domain=deepseek.com&sz=32"),
+    "ernie.baidu.com":  ("badge-blue",    "border-t-blue-400",    "ERNIE",          "https://www.google.com/s2/favicons?domain=ernie.baidu.com&sz=32"),
 }
 
 
