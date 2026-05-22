@@ -63,7 +63,7 @@ def parse_urls(path: str) -> list[str]:
 def fetch_raw(url: str) -> str:
     for attempt in range(4):
         try:
-            r = httpx.get(url, timeout=30, follow_redirects=True, headers=headers)
+            r = httpx.get(url, timeout=30, follow_redirects=True, headers=HEADERS)
             if r.status_code == 429:
                 wait = 2 ** attempt
                 print(f"  [429] Rate limited — retrying in {wait}s")
